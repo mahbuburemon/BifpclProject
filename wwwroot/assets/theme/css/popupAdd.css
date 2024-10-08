@@ -1,0 +1,41 @@
+
+/* css for popup event */
+
+@import url(https://fonts.googleapis.com/css?family=Cedarville+Cursive);
+@import url(https://fonts.googleapis.com/css?family=Tangerine);
+
+.modal-backdrop.show {
+  opacity: 0.5 !important;
+  /* background-color: rgb(151, 151, 151) !important; */
+   background-color: rgb(27, 27, 27) !important; 
+}
+
+.animated-modal {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+
+  .modal-header{
+    padding: 0.2rem 1rem 0rem 1rem;
+    /* background-color: black; */
+    border-bottom: #000000;
+  }
+
+  .btn-close {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='gray'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+}
+
+  #popuptitle h5{
+    font-family: 'Tangerine', cursive;
+	font-size: 35px;
+	font-weight: 500;
+	/* color: rgba(15, 59, 95, 0.85); */
+  color: rgb(212, 212, 212);
+  margin-bottom: -5px;
+}
+
+  .modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 0px;
+}

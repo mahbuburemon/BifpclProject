@@ -1,0 +1,81 @@
+
+        /* css for notice slide animation  */
+        #notice-wrapper {
+            height: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .notices {
+            position: absolute;
+            width: 100%;
+            animation: slide 15s ease-in-out infinite;
+        }
+
+        .notice-item {
+            height: 100px;
+            padding: 5px 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes slide {
+            0% {
+                top: 100%;
+                opacity: 0;
+            }
+
+            8.33% {
+                top: 0;
+                opacity: 1;
+            }
+
+            16.66% {
+                top: 0;
+                opacity: 1;
+            }
+
+            25% {
+                top: -100%;
+                opacity: 1;
+            }
+
+            33.33% {
+                top: -100%;
+                opacity: 1;
+            }
+
+            41.66% {
+                top: -200%;
+                opacity: 1;
+            }
+
+            50% {
+                top: -200%;
+                opacity: 1;
+            }
+
+            58.33% {
+                top: -200%;
+                opacity: 1;
+            }
+
+            66.66% {
+                top: -300%;
+                opacity: 0;
+            }
+
+            80% {
+                top: 100%;
+                opacity: 0;
+            }
+
+            84.61% {
+                top: 0;
+                opacity: 1;
+            }
+
+            100% {
+                top: 0;
+                opacity: 1;
+            }
+        }

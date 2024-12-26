@@ -1,0 +1,49 @@
+﻿@model List<Dept>
+@{
+}
+<h2 class="text-center mb-5">All Departments</h2>
+
+
+
+<div class="container">
+    <div class="row mb-5">
+
+        <div class="col">
+            <a class="btn btn-primary" asp-controller="Dept" asp-action="CreateDept">Add Department</a>
+        </div>
+
+    
+
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Sl</th>
+                <th scope="col">Department Name</th>
+                <th scope="col">Department Code</th>
+                <th scope="col">Action</th>
+     
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var dept in Model)
+            {
+                <tr>
+                    <td>@dept.DeptId</td>
+                    <td>@dept.Dept_Name</td>
+                    <td>@dept.Dept_Code</td>
+                    
+                 
+                    <td class="text-nowrap">
+
+                        <a class="btn btn-primary btn-sm" asp-controller="Dept" asp-action="Edit" asp-route-id="@dept.DeptId">Edit</a>
+                        <a class="btn btn-danger btn-sm" asp-controller="Dept" asp-action="Delete" asp-route-id="@dept.DeptId" onclick="return confirm('Are you sure?')">Delete</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+     </table>
+    </div>
+  

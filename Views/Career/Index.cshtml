@@ -1,0 +1,77 @@
+﻿@model List<Career>
+@{
+}
+<h2 class="text-center mb-5">Bifpcl Rcruitment</h2>
+
+<div class="row mb-5">
+    <div class="col">
+        <a class="btn btn-primary" asp-controller="Career" asp-action="CreateCareer">Create New Circular</a>
+    </div>
+</div>
+
+<div class="col">
+
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>Job Title</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var career in Model)
+        {
+            <div class="card mb-4">
+                <div class="card-body">
+                    <!-- Job Title -->
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => career.JobTitle)</h5>
+
+                    <!-- Job Location -->
+                    <p class="card-text">
+                        <strong>Location:</strong> @Html.DisplayFor(modelItem => career.JobLocation)
+                    </p>
+
+                    <!-- Job Type -->
+                    <p class="card-text">
+                        <strong>Type:</strong> @Html.DisplayFor(modelItem => career.JobType)
+                    </p>
+
+                    <!-- Salary Range -->
+                    <p class="card-text">
+                        <strong>Salary Range:</strong> @Html.DisplayFor(modelItem => career.SalaryRange)
+                    </p>
+
+                    <!-- Job Description (Read-only) -->
+                    <p><strong>Description:</strong></p>
+                    <p>@Html.DisplayFor(modelItem => career.JobDescription)</p>
+
+                    <!-- Responsibilities (Read-only) -->
+                    <p><strong>Responsibilities:</strong></p>
+                    <p>@Html.DisplayFor(modelItem => career.Responsibilities)</p>
+
+                    <!-- Requirements (Read-only) -->
+                    <p><strong>Requirements:</strong></p>
+                    <p>@Html.DisplayFor(modelItem => career.Requirements)</p>
+
+                    <!-- Application Deadline -->
+                    <p class="card-text">
+                        <strong>Application Deadline:</strong> @Html.DisplayFor(modelItem => career.ApplicationDeadline)
+                    </p>
+
+                    <!-- Apply Now Button (Link to another page for application) -->
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-primary" asp-controller="ApplyCareer" asp-action="Create">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        
+
+        }
+
+    </tbody>
+
+</table> 

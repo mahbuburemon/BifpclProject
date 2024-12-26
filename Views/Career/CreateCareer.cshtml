@@ -1,0 +1,106 @@
+﻿@model CareerDto
+@{
+}
+
+<h1>Create Bifpcl Job Recruitment</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+
+        <form method="post" enctype="multipart/form-data" >
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="JobTitle" class="control-label"></label>
+                        <input asp-for="JobTitle" class="form-control" />
+                        <span asp-validation-for="JobTitle" class="text-danger"></span>
+                    </div>
+                </div>
+           
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="JobLocation" class="control-label"></label>
+                        <input asp-for="JobLocation" class="form-control" />
+                        <span asp-validation-for="JobLocation" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="JobType" class="control-label"></label>
+                        <input asp-for="JobType" class="form-control" />
+                        <span asp-validation-for="JobType" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="SalaryRange" class="control-label"></label>
+                        <input asp-for="SalaryRange" class="form-control" />
+                        <span asp-validation-for="SalaryRange" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="JobDescription" class="control-label"></label>
+                        <input asp-for="JobDescription" class="form-control" />
+                        <span asp-validation-for="JobDescription" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Responsibilities" class="control-label"></label>
+                        <input asp-for="Responsibilities" class="form-control" />
+                        <span asp-validation-for="Responsibilities" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Requirements" class="control-label"></label>
+                        <input asp-for="Requirements" class="form-control" />
+                        <span asp-validation-for="Requirements" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ApplicationDeadline" class="control-label"></label>
+                        <input asp-for="ApplicationDeadline" class="form-control" />
+                        <span asp-validation-for="ApplicationDeadline" class="text-danger"></span>
+                    </div>
+                </div>
+             
+            </div>
+            <br />
+            <div class="form-group text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg px-5 shadow-lg">
+                    <i class="fas fa-check-circle"></i> Create
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="text-center mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

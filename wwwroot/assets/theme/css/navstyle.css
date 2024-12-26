@@ -295,8 +295,10 @@ a {
     transition: .3s all ease; }
     .sticky-wrapper .site-navbar ul li.active a {
       color: #fff; }
-  .sticky-wrapper.is-sticky .site-navbar {
-    background-color: #007bff; }
+    .sticky-wrapper.is-sticky .site-navbar {
+     background-color: #007bff;
+      /*  background-color: rgba(0, 182, 82, 0.5) !important;*/
+    }
     .sticky-wrapper.is-sticky .site-navbar .site-navigation .site-menu > li {
       display: inline-block;
       padding: 10px 5px; }

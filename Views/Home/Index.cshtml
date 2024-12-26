@@ -1,8 +1,750 @@
-﻿@{
+﻿@model List<Notice>
+@{
     ViewData["Title"] = "Home Page";
+    ViewData["HomePage"] = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>BIFPCL</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <!-- Favicons -->
+    <link href="assets/theme/img/favicon.ico" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/theme/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/assets/theme/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="~/assets/theme/js/bootstrap.bundle.min.js"></script>
+    <link href="~/assets/theme/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/theme/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/theme/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/assets/theme/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/theme/css/marquee.css">
+    <link rel="stylesheet" href="~/assets/theme/vendor/boxicons/css/boxicons.min.css">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/theme/css/style.css" rel="stylesheet">
+    <link href="~/assets/theme/css/navstyle.css" rel="stylesheet" />
+    <link href="~/assets/theme/css/popupAdd.css" rel="stylesheet" />
+    <link href="assets/theme/css/popupAdd.css" rel="stylesheet" />
+
+    <!-- <link rel="stylesheet" href="assets/theme/css/notice-animation.css"> -->
+
+   <style>
+        .resume .resume-title {
+            font-size: 28px;
+            color: #0563bb;
+        }
+
+        .resume-item ul>li a {
+            color: #000;
+        }
+
+        p em {
+            color: darkcyan;
+        }
+
+        .section-heading>h2 {
+            font-weight: 700;
+            color: #5b32b4;
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .line-shape {
+            margin-left: calc(50% - 40px);
+        }
+
+        .line-shape-white,
+        .line-shape {
+            width: 80px;
+            height: 2px;
+            background-color: #fb397d;
+            margin-top: 15px;
+        }
+
+        .video-area {
+            position: relative;
+            z-index: 1;
+            background-position: center center;
+            background-size: cover;
+            border: 20px solid #fff;
+            border-radius: 20px;
+            height: 650px;
+            -webkit-box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08);
+        }
+
+        .video-area .video-play-btn a {
+            width: 80px;
+            height: 80px;
+            background-color: #0563bb;
+            color: #fff;
+            text-align: center;
+            display: block;
+            font-size: 36px;
+            line-height: 80px;
+            padding-left: 5px;
+            border-radius: 50%;
+            top: 50%;
+            position: absolute;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+       
+
+          .site-navbar.site-navbar-target.js-sticky-header {
+             
+              background-color: rgba(0, 182, 82, 0.5);
+        }
+
+        
+
+          .sticky-wrapper.is-sticky .site-navbar {
+             
+              background-color: rgba(0, 182, 82, 0.5);
+          }
+        /* new css added on 10-09-24 */
+
+       
+        /* members-card-styles */
+        .main-right {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            padding: 50px 0px;
+        }
+
+        .main-right .manager {
+            background: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            border-radius: 0.5rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            padding: 1.25rem 0.625rem;
+        }
+
+        .main-right p {
+            margin-bottom: 0px;
+        }
+
+        figure {
+            margin: 0 0 0rem;
+        }
+
+        .main-right .manager-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .main-right .manager-header .avatar {
+            width: 6.25rem;
+            height: 6.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .main-right .manager-header .avatar img {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+
+        .main-right .manager-header .info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .main-right .manager-header .info .name {
+            font-size: 1.125rem;
+            color: #8749df;
+        }
+
+        .main-right .manager-header .info .designation {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4a4a4a;
+        }
+
+        .main-right .manager-body .text {
+            color: #4a4a4a;
+            font-size: 0.8125rem;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        /* css for Notice Board  */
+        ul {
+            list-style: none;
+        }
+
+        #notice-board-ticker {
+            padding-right: 10px;
+        }
+
+        #notice-board ul a {
+            font-size: 14px;
+            text-decoration: none;
+            margin-left: 10px;
+            border-bottom: 1px dotted #666;
+        }
+
+        #notice-board ul li a:hover {
+            color: #000;
+            border-bottom: 1px solid #000 !important;
+        }
+
+        .footer-credit ul li,
+        a,
+        a:visited {
+            color: #666;
+            text-decoration: none;
+        }
+
+        #notice-board-ticker li {
+            background: url("assets/theme/img/bullet_tick.png") no-repeat center left;
+        }
+
+        @@media only screen and (max-width: 767px) {
+            .content-center-sm {
+                display: block;
+                margin-left: auto !important;
+                margin-right: auto;
+                max-width: 100%;
+            }
+        }
+
+        /* css for menu box card  */
+        .box img{
+            margin-right: 5px;
+        }
+        .box .menu-link{
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+        }
+        .box .menu-link a:hover{
+            font-size: 14px;
+            color: #000;
+            line-height: 1.7;
+            border-bottom: 1px solid #000;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <!-- ======= Hero Section video ======= -->
+    <section id="hero" class="d-flex flex-column justify-content-center">
+
+        <video id="background-video" autoplay loop muted poster="assets/theme/img/gallery/bifpcl/img1.png">
+            <source src="assets/theme/videos/intro1.mp4" type="video/mp4">
+        </video>
+        <div class="container text-center" data-aos="zoom-in" data-aos-delay="100">
+
+            <h1>WELCOME TO BIFPCL</h1>
+            <p>
+                <span class="typed"
+                      data-typed-items="Bangladesh-India Friendship Power Company (Pvt.) Ltd, Maitree Super Thermal Power Project, 2X660 MegaWatts, Rampal 1320 MW Coal Power Plant"></span>
+            </p>
+
+        </div>
+    </section>
+    <!-- End Hero -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <main>
+                 
+                    <!-- ======= Notice-card Section start ======= -->
+                    <section id="notice-card" class="facts" style="padding-bottom: 20px;">
+                        <div class="container" data-aos="fade-up">
+
+                            <div class="row">
+                                <div class="card shadow-sm" style="padding-left: 0px;">
+                                    <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                               
+                                                <img id="notice-board-img" class="content-center-sm"
+                                                     src="~/assets/img/notice-img.png" class="img-fluid"
+                                                     alt="Notice-imgage" width="235px" style="margin-left: -20px;" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div id="notice-board" class="">
+                                                    <div class="notice-board-bg">
+                                                        <h5>Notice Board</h5>
+                                                        <div>
+                                                            @foreach (var notice in Model)
+                                                            {
+                                                                <ul>
+                                                                    <li>
+                                                                        <span><img src="~/assets/img/bullet_tick.png" /></span><a class="truncated-text"
+                                                                                                                                  asp-controller="PublicNotices"
+                                                                                                                                  asp-action="SingleNotices">@notice.Description</a>
+
+                                                                    </li>
+                                                               
+                                                                </ul>
+                                                            }
+                                                          
+
+                                                            <div class="d-flex justify-content-end">
+                                                                <a asp-controller="PublicNotices"
+                                                                   asp-action="AllNotices" class="btn btn-outline-warning"
+                                                                   title="See More"
+                                                                   style="font-size: 14px; color: #666;">See-More</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </section>
+                    <!-- End Notice-card Section end -->
+                   
+                    <!-- card-thumbnail section start -->
+                    <section>
+                        <div class="row g-3">
+                            <div class="col-md-6" data-aos="fade-up">
+                                <div class="card box shadow-sm">
+                                    <div class="card-header">About Us </div>
+                                    <div class="card-body">
+                                        <div class="d-inline p-2" style="float: left;">
+                                            <img src="~/assets/img/about_us.png" alt="about">
+                                        </div>
+                                        <div class="d-inline p-2">
+                                            <ul>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#"> Vision & Mission</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">  Work Plan</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">Organizational Structure</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#"> Officer's List</a></li>
+                                            </ul>
+
+                                 
+                                           
+                                          
+                                            
+                                           
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" data-aos="fade-up">
+                                <div class="card box shadow-sm">
+                                    <div class="card-header"> বিজ্ঞপ্তি/আদেশ/পরিপত্র </div>
+                                    <div class="card-body">
+                                        <div class="d-inline p-2" style="float: left;">
+                                            <img src="~/assets/img/circular_notice.png" alt="about">
+                                        </div>
+                                        <div class="d-inline p-2">
+                                            <ul>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">প্রজ্ঞাপন/পরিপত্র</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">সাংগঠনিক কাঠামো</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">কর্মকর্তাবৃন্দ</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">কর্মবন্টন</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" data-aos="fade-up">
+                                <div class="card box shadow-sm">
+                                    <div class="card-header"> নীতিমালা ও প্রকাশনা</div>
+                                    <div class="card-body">
+                                        <div class="d-inline p-2" style="float: left;">
+                                            <img src="~/assets/img/202.png" alt="about">
+                                        </div>
+                                        <div class="d-inline p-2">
+                                            <ul>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">ভিশন ও মিশন</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">সাংগঠনিক কাঠামো</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">কর্মকর্তাবৃন্দ</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">কর্মবন্টন</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" data-aos="fade-up">
+                                <div class="card box shadow-sm">
+                                    <div class="card-header"> নাগরিক ই-সেবাসমূহ</div>
+                                    <div class="card-body">
+                                        <div class="d-inline p-2" style="float: left;">
+                                            <img src="~/assets/img/203.jpg" alt="about">
+                                        </div>
+                                        <div class="d-inline p-2">
+                                            <ul>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">ভিশন ও মিশন</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">সাংগঠনিক কাঠামো</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">কর্মকর্তাবৃন্দ</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">কর্মবন্টন</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" data-aos="fade-up">
+                                <div class="card box shadow-sm">
+                                    <div class="card-header"> সেবা প্রদান প্রতিশ্রুতি</div>
+                                    <div class="card-body">
+                                        <div class="d-inline p-2" style="float: left;">
+                                            <img src="~/assets/img/204.png" alt="about">
+                                        </div>
+                                        <div class="d-inline p-2">
+                                            <ul>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">ভিশন ও মিশন</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">সাংগঠনিক কাঠামো</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">কর্মকর্তাবৃন্দ</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">কর্মবন্টন</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" data-aos="fade-up">
+                                <div class="card box shadow-sm">
+                                    <div class="card-header"> জাতীয় শুদ্ধাচার কৌশল</div>
+                                    <div class="card-body">
+                                        <div class="d-inline p-2" style="float: left;">
+                                            <img src="~/assets/img/205.png" alt="about">
+                                        </div>
+                                        <div class="d-inline p-2">
+                                            <ul>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">ভিশন ও মিশন</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">সাংগঠনিক কাঠামো</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">কর্মকর্তাবৃন্দ</a></li>
+                                                <li class="menu-link"><span><img src="assets/theme/img/bullet_tick.png" alt=""></span> <a href="#">কর্মবন্টন</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+                </main>
+                <!-- End #main -->
+            </div>
+            <div class="col-md-3">
+                <div class="main-right" data-aos="fade-up">
+
+                    <div class="manager" style="padding: 0rem 0rem 1.25rem 0rem;">
+                        <div class="p-2 text-white mb-2 text-center" style="background-color: #338E5C">
+                            <p>Chairman</p>
+                        </div>
+                        <div class="manager-header">
+                            <figure class="avatar">
+                                <img src="~/assets/img/chairman.jpg" alt="avatar">
+                             
+                            </figure>
+
+                            <div class="info">
+                                <h5 class="name" style="text-align:center;">Dr. Md Mokhles ur Rahman</h5>
+                                <p class="designation">Senior Secretary</p>
+                                <p class="designation">Ministry of Public Administration</p>
+
+
+                                <p class="designation">Chairman, BIFPCL</p>
+                            </div>
+                        </div>
+
+                        <div class="manager-body">
+                            <p class="text" style="text-align:Justify;">
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="manager" style="padding: 0rem 0rem 1.25rem 0rem;">
+                        <div class="p-2 text-white mb-2 text-center" style="background-color: #338E5C">
+                            <p>Managing Director</p>
+                        </div>
+
+                        <div class="manager-header">
+                            <figure class="avatar">
+                                
+                                <img src="~/assets/img/mdvp.jpg" alt="avatar" />
+                            </figure>
+
+                            <div class="info">
+                                <h5 class="name" style="text-align:center;">Dr. Vijay Prakash</h5>
+                                <p class="designation">Managing Director, BIFPCL</p>
+                            </div>
+                        </div>
+
+                        <div class="manager-body">
+                            <p class="text" style="text-align:Justify;">
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="manager" style="padding: 0rem 0rem 1.25rem 0rem;">
+                        <div class="p-2 text-white mb-2 text-center" style="background-color: #338E5C">
+                            <p>Project Director</p>
+                        </div>
+
+                        <div class="manager-header">
+                            <figure class="avatar">
+                               
+                                <img src="~/assets/img/mishrapd.jpg" alt="avatar" />
+                            </figure>
+
+                            <div class="info">
+                                <h5 class="name" style="text-align:center;">Santanu Kumar Mishra</h5>
+
+
+                                <p class="designation">Project Director, BIFPCL</p>
+                            </div>
+                        </div>
+
+                        <div class="manager-body">
+                            <p class="text" style="text-align:Justify;">
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- slider employee card section start  -->
+                    <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="3300">
+
+                                <div class="manager" style="padding: 0rem 0rem 1.25rem 0rem;">
+                                    <div class="p-2 text-white mb-2 text-center" style="background-color:#338E5C">
+                                        <p>Chief Procurement Officer(CPO)</p>
+                                    </div>
+                                    <div class="manager-header">
+                                        <figure class="avatar">
+                                            <img src="assets/theme/img/cpo.jpg" alt="avatar">
+                                        </figure>
+                                        <div class="info">
+                                            <h5 class="name">Mr. Md. Ziaur Rahman</h5>
+                                            <p class="designation">Chief Procurement Officer, BIFPCL</p>
+                                        </div>
+                                    </div>
+                                    <div class="manager-body">
+                                        <p class="text" style="text-align:Justify;">
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="carousel-item" data-bs-interval="3300">
+                                <div class="manager" style="padding: 0rem 0rem 1.25rem 0rem;">
+                                    <div class="p-2 text-white mb-2 text-center" style="background-color:#338E5C">
+                                        <p>Chief Finance Office(CFO)</p>
+                                    </div>
+                                    <div class="manager-header">
+                                        <figure class="avatar">
+                                            <img src="~/assets/img/cfo.jpg" alt="avatar">
+                                        </figure>
+                                        <div class="info">
+                                            <h5 class="name">Mr. Santanu Sinha</h5>
+                                            <p class="designation">Chief Finance Officer, BIFPCL</p>
+                                        </div>
+                                    </div>
+                                    <div class="manager-body">
+                                        <p class="text" style="text-align:Justify;">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="3300">
+                                <div class="manager" style="padding: 0rem 0rem 1.25rem 0rem;">
+                                    <div class="p-2 text-white mb-2 text-center" style="background-color:#338E5C">
+                                        <p>Chief Human Resource Officer(CHRO)</p>
+                                    </div>
+                                    <div class="manager-header">
+                                        <figure class="avatar">
+                                            <img src="~/assets/img/chro.jpg" alt="avatar">
+                                        </figure>
+                                        <div class="info">
+                                            <h5 class="name">Mr. Md. Asaduzzaman Akan</h5>
+                                            <p class="designation">Chief Human Resource Officer, BIFPCL</p>
+                                        </div>
+                                    </div>
+                                    <div class="manager-body">
+                                        <p class="text" style="text-align:Justify;">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Facts Section ======= -->
+    <section id="facts" class="facts" style="background-color:#f7f8f9">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Facts</h2>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="count-box">
+                        <i class="bi bi-coin"></i>
+                        <span data-purecounter-start="0" data-purecounter-end="2" data-purecounter-duration="1"
+                              class="purecounter"></span>
+                        <p class="fw-bold" style="font-size: 18px; color: #22ab6c;">CAPEX(bUSD)</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                    <div class="count-box">
+                        <i class="bi bi-journal-richtext"></i>
+                        <span data-purecounter-start="0" data-purecounter-end="13" data-purecounter-duration="1"
+                              class="purecounter"></span>
+                        <p class="fw-bold" style="font-size: 18px; color: #22ab6c;">Milestones</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                    <div class="count-box">
+                        <i class="bi bi-emoji-smile"></i>
+                        <span data-purecounter-start="0" data-purecounter-end="301" data-purecounter-duration="1"
+                              class="purecounter"></span>
+                        <p class="fw-bold" style="font-size: 18px; color: #22ab6c;">Manpower</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                    <div class="count-box">
+                        <i class="bi bi-award"></i>
+                        <span data-purecounter-start="0" data-purecounter-end="2" data-purecounter-duration="1"
+                              class="purecounter"></span>
+                        <p class="fw-bold" style="font-size: 18px; color: #22ab6c;">Units of 66O MW</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- End Facts Section -->
+  
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+    @section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="~/assets/theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/theme/js/marquee.js"></script>
+    <script src="~/assets/theme/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="~/assets/theme/vendor/aos/aos.js"></script>
+    <script src="~/assets/theme/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/assets/theme/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/assets/theme/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/assets/theme/vendor/typed.js/typed.umd.js"></script>
+    <script src="~/assets/theme/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="~/assets/theme/js/main.js"></script>
+    <script src="~/assets/theme/js/jquery.sticky.js"></script>
+    <script src="~/assets/theme/js/main-sticky.js"></script>
+    <script>
+        $(function () {
+            let options = {
+                autostart: true,
+                property: 'value',
+                onComplete: null,
+                padding: 10,
+                marquee_class: '.marquee',
+                container_class: '.simple-marquee-container',
+                sibling_class: 0,
+                hover: true,
+                velocity: 0.05,
+                direction: 'left'
+            }
+            $('.simple-marquee-container').SimpleMarquee(options);
+        });
+    </script>
+
+  
+
+    <!-- script for Notice board Text truncate -->
+    <script>
+        var maxLength = 71;
+        var yourStrings = {};
+
+        document.addEventListener("DOMContentLoaded", function () {
+          var elements = document.querySelectorAll("[class^='truncated-text']");
+
+          elements.forEach(function (element) {
+            var id = element.getAttribute("id");
+            var text = element.innerHTML;
+            yourStrings[id] = text;
+            var trimmedString = text.substr(0, maxLength);
+            element.innerHTML = trimmedString + '.....';
+          });
+        });
+
+    </script>
+
+   
+    }
+
+</body>
+
+</html>

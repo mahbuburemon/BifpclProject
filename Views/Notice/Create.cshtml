@@ -1,0 +1,52 @@
+﻿
+@model NoticeDto
+
+
+@{
+    ViewData["Title"] = "";
+    ViewData["Create"] = true;
+    var documents = ViewBag.Documents as List<Dept>;
+}
+
+
+<div class="row">
+    <div class="col-md-8 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5">Add Notice</h2>
+
+
+        <form method="post" enctype="multipart/form-data"  action="@Url.Action("Create", "Notice")">
+            @Html.AntiForgeryToken()
+
+            <!-- Department Dropdown -->
+            <div class="mb-3">
+                <label for="DeptId" class="form-label">Department</label>
+                <select class="form-control" name="DeptId" id="DeptId" >
+                    <option value="" disabled selected hidden>Select</option>
+                    @if (ViewBag.Departments != null)
+                    {
+                        foreach (var dept in ViewBag.Departments as List<Dept>)
+                        {
+                            <option value="@dept.DeptId">@dept.Dept_Name</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label for="Description" class="form-label">Description</label>
+                <textarea class="form-control" name="Description" id="Description" required></textarea>
+            </div>
+
+            <!-- Upload Document -->
+            <div class="mb-3">
+                <label for="FilePath" class="form-label">Upload Document</label>
+                <input type="file" class="form-control" name="FilePath" id="FilePath" accept=".pdf,.doc,.docx" required />
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</div>

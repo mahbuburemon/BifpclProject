@@ -1,0 +1,108 @@
+﻿@model List<Notice>
+@{
+    int pageIndex = (int)ViewData["PageIndex"]!;
+    int totalPages = (int)ViewData["TotalPages"]!;
+    string search = (string)ViewData["Search"]!;
+    var documents = ViewBag.Documents as List<Dept>;
+
+}
+
+
+<h2 class="text-center mb-5">All Notices</h2>
+
+
+
+<div class="container">
+    <div class="row mb-5">
+
+        <div class="col">
+            <a class="btn btn-primary" asp-controller="Notice" asp-action="Create">New Notice</a>
+        </div>
+
+        <div class="col">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" name="search" value="@search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Department</th>
+                <th scope="col">Headline</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Document</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var notices in Model)
+            {
+                <tr>
+                    <td>@notices.NoticeId</td>
+                   @*  <td>@notices.Department ?? "No Department"</td> *@ <!-- Debugging -->
+               @* <td>
+                        @foreach (var dept in notices.Department?.Split(',') ?? new string[] { })
+                        {
+                            <span>@dept</span>
+                            <br />
+                        }
+                    </td>  *@
+                    <td>
+                        @* @notices.Dept_Name *@
+
+
+                        @foreach (var dept in ViewBag.Departments as List<Dept>)
+                        {
+                           @if (notices.DeptId ==dept.DeptId)
+                           {
+
+                                <div> @dept.Dept_Name</div>
+                            }
+                        }
+                        </td>
+
+
+                    <td>@notices.Description</td>
+                    <td>@notices.CreatedAt.ToString("MM/dd/yyyy")</td>
+                    <td>
+                        <a href="/NoticeFile/@notices.FilePath">
+                            <label for="fileInput">
+                                <img src="~/assets/img/pdf.png" width="50px" height="50px" alt="Upload Document" style="cursor: pointer;" />
+                            </label>
+
+                        </a>
+                    </td>
+                    <td class="text-nowrap">
+                        <a class="btn btn-primary btn-sm" asp-controller="Notice" asp-action="Edit" asp-route-id="@notices.NoticeId">Edit</a>
+                        <a class="btn btn-danger btn-sm" asp-controller="Notice" asp-action="Delete" asp-route-id="@notices.NoticeId" onclick="return confirm('Are you sure?')">Delete</a>
+                      
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <nav>
+        <ul class="pagination">
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                string active = "";
+                if (i == pageIndex) active = "active";
+                <li class="page-item @active">
+                    <a class="page-link" asp-route-pageIndex="@i"
+                       asp-route-search="@search">@i</a>
+                
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+
+

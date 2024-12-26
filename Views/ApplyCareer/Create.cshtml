@@ -1,0 +1,1264 @@
+﻿@model ApplyForm
+@{
+}
+
+
+@* 
+    <div class="col-md-6">
+        <div class="form-group">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => JobTitle)</h5>
+        </div>
+    </div> *@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="image/logo1.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+    <title>Job Application</title>
+
+    <link href="~/css/applypage/style.css" rel="stylesheet" />
+
+</head>
+
+<body class="bg">
+    <div class="container text-center" style="margin-top: 100px;">
+        <h1>Job Application Form</h1>
+    </div>
+    <div class="container">
+        <h5 class="bg-jobTitle text-light w-100 p-2">Job Title: </h5>
+        <div class="row">
+            <div class="col-12">
+                <select asp-for="JobTitleId" class="form-control" asp-items="ViewBag.JobTitleId"></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 form px-0 " style="width: 100%; ">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <!-- personal details start-->
+            <div class="my-5 pb-2">
+                <h5 class="bg-h5 text-light w-100 p-2">Personal Information</h5>
+                <div class="row">
+                    <!-- input 1 start-->
+                    <div class=" form-group col-12 row px-5 py-2">
+                        <div class="col-2 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">First Name<span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="FirstName" type="text" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- input 1 end -->
+                    <!-- input 2 start-->
+                    <div class="col-12 row px-5 py-2">
+                        <div class="col-2 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Last Name<span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="LastName" type="text" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- input 2 end -->
+                    <!-- input 3 start-->
+                    <div class="col-12 row px-5 py-2">
+                        <div class="col-2 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Father's Name<span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="FatherName" type="text" class="form-control" />
+                            <span asp-validation-for="FatherName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- input 3 end -->
+                    <!-- input 4 start-->
+                    <div class="col-12 row px-5 py-2">
+                        <div class="col-2 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Mother's Name <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="MotherName" type="text" class="form-control" />
+                            <span asp-validation-for="MotherName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- input 4 end -->
+                    <!-- input 5 start-->
+                    <div class="col-12 px-5 py-2 d-flex flex-row justify-content-between ">
+                        <div class="col-6 row">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Date of birth <span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="DateOfBirth" type="date" class="form-control" />
+                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-5 row">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Gender <span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-5">
+                                <select asp-for="Gender" class="select form-control" asp-items="@(new SelectList(new[] { "Male", "Female", "Other" }))">
+                                    <option value="" selected disabled hidden>Select</option>
+                                </select>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- input 5 end -->
+                    <!-- input 6 start-->
+                    <div class="col-12 px-5 py-2 d-flex flex-row justify-content-between">
+                        <!-- Religion Section -->
+                        <div class="col-6 row">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Religion <span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <select asp-for="Religion" class="select form-control" asp-items="@(new SelectList(new[] { "Islam", "Christianity", "Hinduism", "Buddhism", "Other" }))">
+                                    <option value="" selected disabled hidden>Select</option>
+                                </select>
+                                <span asp-validation-for="Religion" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Marital Status Section -->
+                        <div class="col-5 row">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Marital Status <span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-5">
+                                <select asp-for="MartialStatus" class="select form-control" asp-items="@(new SelectList(new[] { "Single", "Married", "Divorced" }))">
+                                    <option value="" selected disabled hidden>Select</option>
+                                </select>
+                                <span asp-validation-for="MartialStatus" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- input 6 end -->
+                    <!-- input 7 start -->
+                    <div class="col-12 row px-5 py-2">
+                        <div class="col-2 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Phone Number <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="PhnInfo" type="number" class="form-control" placeholder="must give 11 digit" />
+                            <span asp-validation-for="PhnInfo" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- input 7 end -->
+                    <!-- input 8 start -->
+                    <div class="col-12 row px-5 py-2">
+                        <div class="col-2 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Email <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="Email" type="email" class="form-control" placeholder="alex@gmail.com" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- input 8 end -->
+                    <!-- input 9 start -->
+                    <div class="col-12 row px-5 py-2">
+                        <div class="col-2 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Nid No <span>*</span> </h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="Nid" type="text" class="form-control" placeholder="give correct Nid No" />
+                            <span asp-validation-for="Nid" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- input 9 end -->
+                    <!-- input 10 start -->
+                    <div class="col-12 row px-5 py-2">
+                        <div class="col-2 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Passport ID</h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="PassportId" type="text" class="form-control" placeholder="give correct passport id" />
+                            <span asp-validation-for="PassportId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- input 10 end -->
+
+
+                </div>
+            </div>
+            <!-- personal details end-->
+            <!--Address part start  -->
+            <div class=" d-flex flex-row justify-content-center w-100">
+                <!--Present Address part start  -->
+                <div class="border border-black p-0 mx-3 w-100">
+                    <h5 class="bg-h5 text-light w-100 p-2">Present Address</h5>
+                    <div class="row">
+                        <!-- input 1 start-->
+                        <!-- input 1: Postal Address (Care Of) -->
+                        <div class="col-12 row px-3 py-2">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Care Of<span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="CareOf" type="text" class="form-control" />
+                                <span asp-validation-for="CareOf" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- input 2: Village/Road/Home -->
+                        <div class="col-12 row px-3 py-2">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Village/Road/Home<span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <textarea asp-for="Village" class="form-control" rows="2"></textarea>
+                                <span asp-validation-for="Village" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- input 3: District -->
+                        <div class="col-12 row px-3 py-2">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">District<span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <select asp-for="District" class="form-control">
+                                    <option value="" disabled selected hidden>Select</option>
+                                    <option value="Mymensingh">Mymensingh</option>
+                                    <option value="Dhaka">Dhaka</option>
+                                    <option value="Cumilla">Cumilla</option>
+                                </select>
+                                <span asp-validation-for="District" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- input 4: Post Office -->
+                        <div class="col-12 row px-3 py-2">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Post Office<span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="PostOffice" type="text" class="form-control" />
+                                <span asp-validation-for="PostOffice" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- input 5: Post Code -->
+                        <div class="col-12 row px-3 py-2">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Post Code<span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="PostCode" type="text" class="form-control" />
+                                <span asp-validation-for="PostCode" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--present Address part end  -->
+                <!--Permanent Address part end  -->
+                <div class=" border border-black p-0 mx-3 w-100">
+                    <h5 class="bg-h5 text-light w-100 p-2">
+                        Permanent Address
+                        <span class="pt-5">
+                            <input class="checkbox" type="checkbox" id="sameAsPresentAddress">
+                        </span>
+                        <label for="sameAsPresentAddress" style="color: rgb(196, 188, 188); font-size:15px;">
+                            same as present address
+                        </label>
+                    </h5>
+
+                    <form action="" row>
+                        <!-- input 1: Care Of -->
+                        <div class="col-12 row px-3 py-2">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Care Of<span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="CareOfP" type="text" class="form-control" />
+                                <span asp-validation-for="CareOfP" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- input 2: Village/Road/Home -->
+                        <div class="col-12 row px-3 py-2">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Village/Road/Home<span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <textarea asp-for="VillageP" class="form-control" rows="2"></textarea>
+                                <span asp-validation-for="VillageP" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- input 3: District -->
+                        <div class="col-12 row px-3 py-2">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">District<span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <select asp-for="DistrictP" class="form-control">
+                                    <option value="" disabled selected hidden>Select</option>
+                                    <option value="Mymensingh">Mymensingh</option>
+                                    <option value="Dhaka">Dhaka</option>
+                                    <option value="Cumilla">Cumilla</option>
+                                </select>
+                                <span asp-validation-for="DistrictP" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- input 4: Post Office -->
+                        <div class="col-12 row px-3 py-2">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Post Office<span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="PostOfficeP" type="text" class="form-control" />
+                                <span asp-validation-for="PostOfficeP" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- input 5: Post Code -->
+                        <div class="col-12 row px-3 py-2">
+                            <div class="col-4 d-flex flex-row justify-content-between">
+                                <h5 class="text-h4">Post Code<span>*</span></h5>
+                                <h5 class="text-h4">:</h5>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="PostCodeP" type="text" class="form-control" />
+                                <span asp-validation-for="PostCodeP" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <!--Permanent Address part end  -->
+
+            </div>
+            <!--Address part start  -->
+            <!-- Education start -->
+            <div class="pt-5 px-4">
+                <h5 style="font-size: 30px; color: #185519; font-weight: bold;"><u>EDUCATION QUALIFICATION</u></h5>
+            </div>
+            <!-- HSC exam details start -->
+            <div class="m-3 border border-black">
+                <h5 class="bg-h5 text-light w-100 p-2">SSC/Equivalent Level</h5>
+                <div class="row">
+                </div>
+                <!-- input 1 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row gap-2 justify-content-between ">
+                    <div class="col-6 row ">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Examination <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="Examination" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="SSC">SSC</option>
+                                <option value="Dakhil">Dakhil</option>
+                                <option value="S.S.C Vocational">S.S.C Vocational</option>
+                                <option value="O Level/Cambridge">O Level/Cambridge</option>
+                                <option value="S.S.C Equivalent">S.S.C Equivalent</option>
+                                <option value="Dakhil Vocational">Dakhil Vocational</option>
+                            </select>
+                            <span asp-validation-for="Examination" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Board <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="Board" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="Barishal">Barishal</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Cumilla">Cumilla</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Dinajpur">Dinajpur</option>
+                                <option value="Jashore">Jashore</option>
+                                <option value="Madrasah">Madrasah</option>
+                                <option value="Mymensingh">Mymensingh</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Sylhet">Sylhet</option>
+                                <option value="Open University">Open University</option>
+                                <option value="Edexcel International">Edexcel International</option>
+                                <option value="Cambridge International - IGCE">Cambridge International - IGCE</option>
+                                <option value="Pharmacy Council of Bangladesh">Pharmacy Council of Bangladesh</option>
+                                <option value="The State Medical Faculty of Bangladesh">The State Medical Faculty of Bangladesh</option>
+                                <option value="Bangladesh Technical Education Board (BTEB)">Bangladesh Technical Education Board (BTEB)</option>
+                                <option value="Other">Other</option>
+
+                            </select>
+                            <span asp-validation-for="Board" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- input 1 end -->
+                <!-- input 2 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row gap-2 justify-content-between ">
+                    <div class="col-6 row ">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Roll No <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Roll" type="text" class="form-control" />
+                            <span asp-validation-for="Roll" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Result<span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Result" type="text" class="form-control" />
+                            <span asp-validation-for="Result" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- input 2 end -->
+                <!-- input 3 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row gap-2 justify-content-between ">
+                    <div class="col-6 row ">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Group/Subject <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="Subject" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="Business Studies">Business Studies</option>
+                                <option value="Dakhil">Dakhil</option>
+                                <option value=" General Humanities"> General Humanities</option>
+                                <option value="Science">Science</option>
+                                <option value="Other">Other</option>
+
+                            </select>
+                            <span asp-validation-for="Subject" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Passing Year <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="PassingYear" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                            </select>
+                            <span asp-validation-for="PassingYear" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- input 3 end -->
+            </div>
+            <!-- HSC exam details start -->
+            <!-- BSC exam details start -->
+            <div class="m-3 mt-4 border border-black">
+                <h5 class="bg-h5 text-light w-100 p-2">HSC or Equivalent Lavel</h5>
+                <div class="row">
+                </div>
+                <!-- input 1 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row gap-2 justify-content-between ">
+                    <div class="col-6 row ">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Examination <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="Examination" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="H.S.C">H.S.C</option>
+                                <option value="Alim">Alim</option>
+                                <option value="Business Management">Business Management</option>
+                                <option value="Diploma-in-Engineering">Diploma-in-Engineering</option>
+                                <option value="A Level/Sr. Cambridge">A Level/Sr. Cambridge</option>
+                                <option value="H.S.C Equivalent">H.S.C Equivalent</option>
+                                <option value="Diploma in Medical Technology">Diploma in Medical Technology</option>
+                                <option value="H.S.C Vocational">H.S.C Vocational</option>
+                                <option value="H.S.C (BM)">H.S.C (BM)</option>
+                                <option value="Diploma in Pharmacy">Diploma in Pharmacy</option>
+                            </select>
+                            <span asp-validation-for="Examination_H" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-6 row">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Board <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="Board_H" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="Barishal">Barishal</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Cumilla">Cumilla</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Dinajpur">Dinajpur</option>
+                                <option value="Jashore">Jashore</option>
+                                <option value="Madrasah">Madrasah</option>
+                                <option value="Mymensingh">Mymensingh</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Sylhet">Sylhet</option>
+                                <option value="Open University">Open University</option>
+                                <option value="Edexcel International">Edexcel International</option>
+                                <option value="Cambridge International - IGCE">Cambridge International - IGCE</option>
+                                <option value="Pharmacy Council of Bangladesh">Pharmacy Council of Bangladesh</option>
+                                <option value="The State Medical Faculty of Bangladesh">The State Medical Faculty of Bangladesh</option>
+                                <option value="Bangladesh Technical Education Board (BTEB)">Bangladesh Technical Education Board (BTEB)</option>
+                                <option value="Other">Other</option>
+
+                            </select>
+                            <span asp-validation-for="Board_H" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- input 1 end -->
+                <!-- input 2 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row gap-2 justify-content-between ">
+                    <div class="col-6 row ">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Roll No <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Roll_H" type="text" class="form-control" />
+                            <span asp-validation-for="Roll_H" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Result<span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Result_H" type="text" class="form-control" />
+                            <span asp-validation-for="Result_H" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- input 2 end -->
+                <!-- input 3 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row gap-2 justify-content-between ">
+                    <div class="col-6 row ">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Group/Subject <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="Subject_H" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="Business Studies">Business Studies</option>
+                                <option value="Dakhil">Dakhil</option>
+                                <option value=" General Humanities"> General Humanities</option>
+                                <option value="Science">Science</option>
+                                <option value="Other">Other</option>
+
+                            </select>
+                            <span asp-validation-for="Subject_H" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Passing Year <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="PassingYear_H" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                            </select>
+                            <span asp-validation-for="PassingYear_H" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- input 3 end -->
+            </div>
+            <!-- Hsc exam details start -->
+            <!-- MSC exam details start -->
+            <div class="m-3 mt-4 border border-black">
+                <h5 class="bg-h5 text-light w-100 p-2">BSC or Equivalent Lavel</h5>
+                <div class="row">
+                </div>
+                <!-- input 1 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row gap-2 justify-content-between ">
+                    <div class="col-6 row ">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Examination <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="Degree" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="H.S.C">H.S.C</option>
+                                <option value="Alim">Alim</option>
+                                <option value="Business Management">Business Management</option>
+                                <option value="Diploma-in-Engineering">Diploma-in-Engineering</option>
+                                <option value="A Level/Sr. Cambridge">A Level/Sr. Cambridge</option>
+                                <option value="H.S.C Equivalent">H.S.C Equivalent</option>
+                                <option value="Diploma in Medical Technology">Diploma in Medical Technology</option>
+                                <option value="H.S.C Vocational">H.S.C Vocational</option>
+                                <option value="H.S.C (BM)">H.S.C (BM)</option>
+                                <option value="Diploma in Pharmacy">Diploma in Pharmacy</option>
+                            </select>
+                            <span asp-validation-for="Degree" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Subject/Degree <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="Major" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="Business Studies">Business Studies</option>
+                                <option value="Dakhil">Dakhil</option>
+                                <option value=" General Humanities"> General Humanities</option>
+                                <option value="Science">Science</option>
+                                <option value="Other">Other</option>
+
+                            </select>
+                            <span asp-validation-for="Major" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- input 1 end -->
+                <!-- input 2 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row gap-2 justify-content-between ">
+                    <div class="col-6 row ">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">University/Inst <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="Major" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="101">Ad-din Womens Medical College, Dhaka</option>
+                                <option value="102">Ahsania Mission University of Science and Technology</option>
+                                <option value="103">Ahsanullah University of Science and Technology</option>
+                                <option value="104">America Bangladesh University</option>
+                                <option value="105">American International University Bangladesh</option>
+                                <option value="106">Anwer Khan Modern Medical College, Dhaka</option>
+                                <option value="107">Anwer Khan Modern University</option>
+                                <option value="108">ASA University Bangladesh</option>
+                                <option value="109">Asian University for Women</option>
+                                <option value="110">Asian University of Bangladesh</option>
+                                <option value="111">Atish Dipankar University of Science &amp; Technology</option>
+                                <option value="112">Bandarban University</option>
+                                <option value="113">Bangabandhu Sheikh Mujib Medical University</option>
+                                <option value="114">Bangabandhu Sheikh Mujibur Rahman Agricultural University</option>
+                                <option value="115">
+                                    Bangabandhu Sheikh Mujibur Rahman Aviation And Aerospace University
+                                </option>
+                                <option value="116">Bangabandhu Sheikh Mujibur Rahman Digital University</option>
+                                <option value="117">Bangabandhu Sheikh Mujibur Rahman Maritime University</option>
+                                <option value="118">
+                                    Bangabandhu Sheikh Mujibur Rahman Science and Technology University
+                                </option>
+                                <option value="119">Bangabandhu Sheikh Mujibur Rahman Univerisity, Kishoreganj</option>
+                                <option value="120">
+                                    Bangamata Sheikh Fojilatunnesa Mujib Science and Technology
+                                    University
+                                </option>
+                                <option value="121">Bangladesh Agricultural University,Mymensingh</option>
+                                <option value="122">Bangladesh Airlines Training Centre (BATC)</option>
+                                <option value="123">
+                                    Bangladesh Army International University of Science &amp;
+                                    Technology(BAIUST) ,Comilla
+                                </option>
+                                <option value="124">
+                                    Bangladesh Army University of Engineering and Technology (BAUET),
+                                    Qadirabad
+                                </option>
+                                <option value="125">
+                                    Bangladesh Army University of Science and Technology(BAUST), Saidpur
+                                </option>
+                                <option value="126">Bangladesh Islami University</option>
+                                <option value="127">Bangladesh Medical College</option>
+                                <option value="128">Bangladesh Open University</option>
+                                <option value="129">Bangladesh University</option>
+                                <option value="130">Bangladesh University of Business &amp; Technology (BUBT)</option>
+                                <option value="131">Bangladesh University of Engineering &amp; Technology</option>
+                                <option value="132">Bangladesh University of Health Sciences</option>
+                                <option value="133">Bangladesh University of Professionals</option>
+                                <option value="134">Bangladesh University of Textiles</option>
+                                <option value="135">Barisal University</option>
+                                <option value="136">Barishal Engineering College</option>
+                                <option value="137">Begum Rokeya University, Rangpur</option>
+                                <option value="138">BGC Trust Medical College, Chittagong</option>
+                                <option value="139">BGC Trust University Bangladesh, Chittagong</option>
+                                <option value="140">BGMEA University of Fashion &amp; Technology(BUFT)</option>
+                                <option value="141">BRAC University</option>
+                                <option value="142">Britannia University</option>
+                                <option value="143">Canadian University of Bangladesh</option>
+                                <option value="144">CCN University of Science &amp; Technology</option>
+                                <option value="145">Central Medical College, Comilla</option>
+                                <option value="146">Central University of Science and Technology</option>
+                                <option value="147">Central Women's University</option>
+                                <option value="148">Chandpur Science and Technology University</option>
+                                <option value="149">Chittagong Independent University</option>
+                                <option value="150">Chittagong Medical College</option>
+                                <option value="151">Chittagong Medical University</option>
+                                <option value="152">Chittagong University of Engineering &amp; Technology</option>
+                                <option value="153">Chittagong Veterinary and Animal Sciences University</option>
+                                <option value="154">Chottagram Ma-O-Shishu Hospital Medical College</option>
+                                <option value="155">City University</option>
+                                <option value="156">Comilla Medical College</option>
+                                <option value="157">Comilla University</option>
+                                <option value="158">Community Based Medical College (cbmc), Mymensingh</option>
+                                <option value="159">Community Medical College, Dhaka</option>
+                                <option value="160">Cox's Bazar International University</option>
+                                <option value="161">Cox's Bazar Medical College</option>
+                                <option value="162">Daffodil International University</option>
+                                <option value="163">Darul Ihsan University</option>
+                                <option value="164">Delta Medical College, Dhaka</option>
+                                <option value="165">Dhaka International University</option>
+                                <option value="166">Dhaka Medical College</option>
+                                <option value="167">Dhaka National Medical College</option>
+                                <option value="168">Dhaka University</option>
+                                <option value="169">Dhaka University of Engineering &amp; Technology</option>
+                                <option value="170">Dinajpur Medical College</option>
+                                <option value="171">
+                                    Durra Samad Rahman Red Crescent Women's Medical College, Sylhet
+                                </option>
+                                <option value="172">East Delta University , Chittagong</option>
+                                <option value="173">East West University</option>
+                                <option value="174">Eastern Medical College, Comilla</option>
+                                <option value="175">Eastern University</option>
+                                <option value="176">Enam Medical College, Savar, Dhaka</option>
+                                <option value="177">European University of Bangladesh</option>
+                                <option value="178">Exim Bank Agricultural University, Bangladesh</option>
+                                <option value="179">Fareast International University</option>
+                                <option value="180">Faridpur Engineering College</option>
+                                <option value="181">Faridpur Medical College</option>
+                                <option value="182">Feni Medical College,Feni</option>
+                                <option value="183">Feni University</option>
+                                <option value="184">First Capital University of Bangladesh</option>
+                                <option value="185">German University Bangladesh</option>
+                                <option value="186">Global University Bangladesh</option>
+                                <option value="187">Gono Bishwabidyalay, Savar, Dhaka</option>
+                                <option value="188">Green Life Medical College, Dhaka</option>
+                                <option value="189">Green University of Bangladesh</option>
+                                <option value="190">Hajee Mohammad Danesh Science &amp; Technology University</option>
+                                <option value="191">Hamdard University Bangladesh</option>
+                                <option value="192">Hobiganj Agricultural University</option>
+                                <option value="193">Holy Family Red Crescent Medical College, Dhaka</option>
+                                <option value="194">IBAIS University</option>
+                                <option value="195">Ibn Sina Medical College, Dhaka</option>
+                                <option value="196">Ibrahim Medical College, Dhaka</option>
+                                <option value="197">Independent University, Bangladesh</option>
+                                <option value="198">International Islamic University, Chittagong</option>
+                                <option value="199">International Medical College, Gazipur</option>
+                                <option value="200">International Standard University </option>
+                                <option value="201">
+                                    International University of Business Agriculture &amp; Technology
+                                </option>
+                                <option value="202">Ishakha International University, Bangladesh</option>
+                                <option value="203">Islami Bank Medical College, Rajshahi</option>
+                                <option value="204">Islamic Arabic University</option>
+                                <option value="205">Islamic University</option>
+                                <option value="206">Islamic University of Technology</option>
+                                <option value="207">Islamic University of Technology, Gazipur</option>
+                                <option value="208">Islamic University, Bangladesh</option>
+                                <option value="209">Islamic University, Kushtia</option>
+                                <option value="210">Jagannath University</option>
+                                <option value="211">Jahangirnagar University</option>
+                                <option value="212">Jahurul Islam Medical College, Kishoregonj</option>
+                                <option value="213">Jalalabad Ragib-Rabeya Medical College, Sylhet</option>
+                                <option value="214">Jatiya Kabi Kazi Nazrul Islam University</option>
+                                <option value="215">Jessore Medical College</option>
+                                <option value="216">Jessore Science &amp; Technology University</option>
+                                <option value="217">Jessore University of Science &amp; Technology</option>
+                                <option value="218">Khawja Yunus Ali Medical College, Sirajganj</option>
+                                <option value="219">Khulna Agricultural University</option>
+                                <option value="220">Khulna Khan Bahadur Ahsanullah University</option>
+                                <option value="221">Khulna Medical College</option>
+                                <option value="222">Khulna University</option>
+                                <option value="223">Khulna University of Engineering and Technology</option>
+                                <option value="224">Khwaja Yunus Ali University</option>
+                                <option value="225">Kumudini Medical College, Tangail</option>
+                                <option value="226">Kushtia Medical College</option>
+                                <option value="227">Labaid Medical College, Dhanmondi, Dhaka</option>
+                                <option value="228">Leading University, Sylhet</option>
+                                <option value="229">MAG Osmani Medical College</option>
+                                <option value="230">Manarat International University</option>
+                                <option value="231">Maulana Bhasani Medical College</option>
+                                <option value="232">Mawlana Bhashani Science &amp; Technology University</option>
+                                <option value="233">Medical College for Women and Hospital, Dhaka</option>
+                                <option value="234">Metropolitan University, Sylhet</option>
+                                <option value="235">Microland University of Science and Technology</option>
+                                <option value="236">Military Institute of Science and Technology (MIST)</option>
+                                <option value="237">Mymensingh Engineering College</option>
+                                <option value="238">Mymensingh Medical College</option>
+                                <option value="239">N.P.I University of Bangladesh</option>
+                                <option value="240">National University</option>
+                                <option value="241">Nightingale Medical College, Dhaka</option>
+                                <option value="242">Noakhali Medical College</option>
+                                <option value="243">Noakhali Science &amp; Technology University</option>
+                                <option value="244">North Bengal International University</option>
+                                <option value="245">North Bengal Medical College, Sirajganj</option>
+                                <option value="246">North East Medical College, Sylhet</option>
+                                <option value="247">North East University Bangladesh</option>
+                                <option value="248">North South University</option>
+                                <option value="249">North Western University</option>
+                                <option value="250">Northern International Medical College, Dhaka</option>
+                                <option value="251">Northern Private Medical College, Rangpur</option>
+                                <option value="252">Northern University Bangladesh</option>
+                                <option value="253">Northern University of Business &amp; Technology, Khulna</option>
+                                <option value="254">Notre Dame University Bangladesh</option>
+                                <option value="255">Pabna Medical College</option>
+                                <option value="256">Pabna University of Science and Technology</option>
+                                <option value="257">Patuakhali Science And Technology University</option>
+                                <option value="258">Popular Medical College &amp; Hospital, Dhaka</option>
+                                <option value="259">Port City International University</option>
+                                <option value="260">Premier University, Chittagong</option>
+                                <option value="261">Presidency University</option>
+                                <option value="262">Prime Medical College, Rangpur</option>
+                                <option value="263">Prime University</option>
+                                <option value="264">Primeasia University</option>
+                                <option value="265">Pundra University of Science &amp; Technology</option>
+                                <option value="266">Queens University</option>
+                                <option value="267">R.T.M Al-Kabir Technical University</option>
+                                <option value="268">Rabindra Maitree University, Kushtia</option>
+                                <option value="269">Rabindra University, Bangladesh</option>
+                                <option value="270">Rajshahi Medical College</option>
+                                <option value="271">Rajshahi Medical University</option>
+                                <option value="272">Rajshahi Science &amp; Technology University (RSTU), Natore</option>
+                                <option value="273">Rajshahi University</option>
+                                <option value="274">Rajshahi University of Engineering &amp; Technology</option>
+                                <option value="275">Ranada Prasad Shaha University</option>
+                                <option value="276">Rangamati Science and Technology University</option>
+                                <option value="277">Rangpur Community Hospital Medical College</option>
+                                <option value="278">Rangpur Medical College</option>
+                                <option value="279">Rangpur University</option>
+                                <option value="280">Royal University of Dhaka</option>
+                                <option value="281">Rupayan A.K.M Shamsuzzoha University</option>
+                                <option value="282">Sahabuddin Medical College and Hospital</option>
+                                <option value="283">Samaj Vittik Medical College, Mirzanagar, Savar</option>
+                                <option value="284">Satkhira Medical College</option>
+                                <option value="285">Shah Makhdum Management University, Rajshahi</option>
+                                <option value="286">Shahabuddin Medical College, Dhaka</option>
+                                <option value="287">Shaheed Nazrul Islam Medical College</option>
+                                <option value="288">Shaheed Suhrawardy Medical College</option>
+                                <option value="289">Shaheed Ziaur Rahman Medical College</option>
+                                <option value="290">Shahjalal University of Science &amp; Technology</option>
+                                <option value="291">Shanto Mariam University of Creative Technology</option>
+                                <option value="292">Sheikh Fazilatunnesa Mujib University</option>
+                                <option value="293">Sheikh Hasina University</option>
+                                <option value="294">Sheikh Sayera Khatun Medical College, Gopalganj</option>
+                                <option value="295">Sher-e-Bangla Agricultural University</option>
+                                <option value="296">Sher-E-Bangla Medical College</option>
+                                <option value="297">Sir Salimullah Medical College</option>
+                                <option value="298">Sonargaon University</option>
+                                <option value="299">South Asian University</option>
+                                <option value="300">Southeast University</option>
+                                <option value="301">Southern Medical College, Chittagong</option>
+                                <option value="302">Southern University Bangladesh</option>
+                                <option value="303">Southern University of Bangladesh, Chittagong</option>
+                                <option value="304">Stamford University, Bangladesh</option>
+                                <option value="305">State University Of Bangladesh</option>
+                                <option value="306">Sylhet Agricultural University</option>
+                                <option value="307">Sylhet Engineering College</option>
+                                <option value="308">Sylhet International University, Sylhet</option>
+                                <option value="309">Sylhet Medical University</option>
+                                <option value="310">Sylhet Women`s Medical College, Sylhet</option>
+                                <option value="311">Tagore University of Creative Arts, Uttara, Dhaka, Bangladesh</option>
+                                <option value="312">Tairunnessa Memorial Medical College, Gazipur</option>
+                                <option value="313">The International University of Scholars</option>
+                                <option value="314">The Millennium University</option>
+                                <option value="315">The Peoples University of Bangladesh</option>
+                                <option value="316">The University of Asia Pacific</option>
+                                <option value="317">Times University, Bangladesh</option>
+                                <option value="318">TMSS Medical College,Bogra</option>
+                                <option value="319">Trust University, Barishal</option>
+                                <option value="320">United International University</option>
+                                <option value="321">University of Asia Pacific</option>
+                                <option value="322">University of Barisal</option>
+                                <option value="323">University of Brahmanbaria</option>
+                                <option value="324">University of Chittagong</option>
+                                <option value="325">University of Creative Technology, Chittagong</option>
+                                <option value="326">University of Development Alternative</option>
+                                <option value="327">University of Dhaka</option>
+                                <option value="328">University of Global Village</option>
+                                <option value="329">University of Information Technology &amp; Sciences</option>
+                                <option value="330">University of Liberal Arts Bangladesh</option>
+                                <option value="331">University of Rajshahi</option>
+                                <option value="332">University of Science &amp; Technology, Chittagong</option>
+                                <option value="333">University of Skill Enrichment and Technology</option>
+                                <option value="334">University of South Asia</option>
+                                <option value="335">Uttara Adhunik Medical College,Dhaka</option>
+                                <option value="336">Uttara University</option>
+                                <option value="337">Varendra University</option>
+                                <option value="338">Victoria University of Bangladesh</option>
+                                <option value="339">World University of Bangladesh</option>
+                                <option value="340">Z. H. Sikder Women`s Medical College</option>
+                                <option value="341">Z.H Sikder University of Science &amp; Technology</option>
+                                <option value="342">Z.N.R.F. University of Management Sciences</option>
+                                <option value="999">Other</option>
+
+                            </select>
+                            <span asp-validation-for="Major" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Result<span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="CGPA" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="1">1st Class</option>
+                                <option value="2">2nd Class</option>
+                                <option value="4">CGPA(out of 4)</option>
+                                <option value="5">CGPA(out of 5)</option>
+                                <option value="6">Passed</option>
+                            </select>
+                            <span asp-validation-for="CGPA" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- input 2 end -->
+                <!-- input 3 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row gap-2 justify-content-between ">
+                    <div class="col-6 row ">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Graduation Year <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="GraduationYear" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="2000">2000</option>
+                                <option value="2001">2001</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+
+                            </select>
+                            <span asp-validation-for="GraduationYear" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Course Duration <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="CourseDuration" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="03">03 Years</option>
+                                <option value="04">04 Years</option>
+                                <option value="05">05 Years</option>
+
+                            </select>
+                            <span asp-validation-for="CourseDuration" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- input 3 end -->
+            </div>
+            <!-- MSC exam details start -->
+            <!-- Education end -->
+            <!-- Job Experience -->
+            <div class="m-3 mt-4 border border-black">
+                <h5 class="bg-h5 text-light w-100 p-2">Job Experience</h5>
+                <h5 class="text-light w-100 p-2">
+                    <span>
+                        <input class="checkbox" type="checkbox" name=""
+                               id="">
+                    </span><span style="color: rgb(23, 106, 23); margin-left: 5px; font-weight: bold;">
+                        if
+                        applicable
+                    </span>
+                </h5>
+                <div class="row">
+                </div>
+                <!-- input 1 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row gap-2 justify-content-between ">
+                    <div class="col-6 row ">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Employee On<span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <select asp-for="EmployeeOn" class="form-control">
+                                <option value="" disabled selected hidden>Select</option>
+
+                                <option value="Regular Basis Under Revenue Budget">Regular Basis Under Revenue Budget</option>
+                                <option value="Ad-hoc Basis Under Revenue Budget">Ad-hoc Basis Under Revenue Budget</option>
+                                <option value="Temporary Basis Under Revenue Budget">Temporary Basis Under Revenue Budget</option>
+                                <option value="Work Charged Basis Under Revenue Budget">Work Charged Basis Under Revenue Budget</option>
+                                <option value="Temporary Basis Under Development Project">Temporary Basis Under Development Project</option>
+                                <option value="Work Charged Basis Under Development Project">Work Charged Basis Under Development Project</option>
+                                <option value="Autonomous/Semi Autonomous Organization">Autonomous/Semi Autonomous Organization</option>
+                                <option value="Private Organization">Private Organization</option>
+                                <option value="Business/Self Employed">Business/Self Employed</option>
+
+                            </select>
+                            <span asp-validation-for="EmployeeOn" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Organization <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="OrganizationName" type="text" class="form-control" />
+                            <span asp-validation-for="OrganizationName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- input 1 end -->
+                <!-- input 2 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row justify-content-between ">
+                    <div class="col-6 row ">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Designation<span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="Designation" type="text" class="form-control" />
+                            <span asp-validation-for="Designation" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-3 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Address<span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="Orag_Address" type="text" class="form-control" />
+                            <span asp-validation-for="Orag_Address" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- input 2 end -->
+                <!-- input 3 start-->
+                <div class="col-12 row px-2  w-100">
+                    <div class="col-2 d-flex flex-row ">
+                        <h5 class="text-h4">Length of Services<span>*</span></h5>
+                        <h5 class="text-h4" style="padding-left: 3px;">:</h5>
+                    </div>
+                    <div class="col-10 d-flex flex-row row">
+                        <div class="col-5">
+                            <input asp-for="DateToServices" type="date" class="form-control" />
+                            <span asp-validation-for="DateToServices" class="text-danger"></span>
+                        </div>
+                        <div class="col-1 text-center">
+                            <p style="font-size: 20px;">to</p>
+                        </div>
+                        <div class="col-5">
+                            <input asp-for="LengthodServicesTo" type="date" class="form-control" />
+                            <span asp-validation-for="LengthodServicesTo" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 row px-2  mb-3 w-100" style="padding-top: -10px;">
+                    <div class="col-2 d-flex flex-row "></div>
+                    <div class="col-10 d-flex flex-row row">
+                        <h5 class="text-light w-100">
+                            <span>
+                                <input class="checkbox" type="checkbox" name=""
+                                       id="">
+                            </span><span style="color: rgb(23, 106, 23); margin-left: 5px">
+                                current
+                                working
+                            </span>
+                        </h5>
+                    </div>
+                </div>
+                <!-- input 3 end -->
+                <!-- input 4 start-->
+                <div class="col-12 px-2 py-2 d-flex flex-row gap-2 justify-content-between ">
+                    <div class="col-12 row ">
+                        <div class="col-2 d-flex flex-row justify-content-between">
+                            <h5 class="text-h4">Job Description <span>*</span></h5>
+                            <h5 class="text-h4">:</h5>
+                        </div>
+                        <div class="col-10">
+                            <input asp-for="JobDescription" type="text" class="form-control" />
+                            <span asp-validation-for="JobDescription" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- input 3 end -->
+            </div>
+            <!-- job Applicable End -->
+
+            <!-- Upload image start -->
+            <div class="m-4 border border-black" style="width: 50%; ">
+                <div class="mb-3">
+                    <h5 style="font-size: 20px;" class="bg-h5 text-light w-100 p-2">Upload Image</h5>
+                </div>
+
+            </div>
+            <!-- Upload image end -->
+            <!-- Declaration start -->
+            <div class="px-4 w-75 d-flex">
+                <div><span><input class="checkbox" type="checkbox" name="" id=""></span> </div>
+                <p style="font-size: 17px; font-weight: bold; color: #185519;" class="px-2">
+                    I declare that the Information
+                    provide above correct,true and complete to the best of my knowledge and belief and I would like to
+                    go to the next step.
+                </p>
+            </div>
+            <!-- Declaration end -->
+            <!-- sign start -->
+            <div class="px-4 my-5">
+                <div style="width: 20%;">
+                    <input class="bg-transparent py-4" type="text" name="" id="">
+                </div>
+                <div style="border-top: 2px solid #185519;width: 20%;margin: 3px 0; text-align: center; font-size: 16px; font-weight: bold;">
+                    Sign
+                </div>
+            </div>
+            <!-- sign end -->
+            <!-- submit button start-->
+            <div>
+                <div class="form-group">=--
+                    <button type="submit" class="btn btn-primary w-100 py-1">Submit</button>
+                </div>
+            </div>
+            <!-- submit button end-->
+        </form>
+
+    </div>
+
+    @section Scripts {
+        @{
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                    crossorigin="anonymous"></script>
+            <!-- JavaScript to handle the checkbox and disabling Permanent Address inputs -->
+            <script>
+                document.getElementById('sameAsPresentAddress').addEventListener('change', function () {
+                    let isChecked = this.checked;
+
+                    // List of Permanent Address input fields
+                    let permanentAddressFields = ['CareOfP', 'VillageP', 'DistrictP', 'PostOfficeP', 'PostCodeP'];
+
+                    // Enable/disable the permanent address fields based on the checkbox state
+                    permanentAddressFields.forEach(fieldId => {
+                        document.getElementById(fieldId).disabled = isChecked;
+                    });
+                });
+            </script>
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+   
+</body>
+
+</html>
